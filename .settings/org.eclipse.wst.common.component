@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Twister AUFFAN-GACOUGNOLLE">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/" source-path="/src/servlets"/>
+        <wb-resource deploy-path="/" source-path="/src"/>
+        <property name="context-root" value="Twister_AUFFAN-GACOUGNOLLE"/>
+        <property name="java-output-path" value="/gr2_AUFFAN_GACOUGNOLLE/build/classes"/>
+    </wb-module>
+</project-modules>
