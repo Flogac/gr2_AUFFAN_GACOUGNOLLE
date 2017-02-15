@@ -13,13 +13,16 @@ public class UsersTools{
 		colonnes.add("prenom");
 		colonnes.add("nom");
 		colonnes.add("Password");
-		ArrayList<String> v = new ArrayList<String>();
-		v.add(login);
-		v.add(prenom);
-		v.add(nom);
-		v.add(mdp);
+		colonnes.add("id");
+		int encode = Integer.parseInt(login);
+		ArrayList<String> valeurs = new ArrayList<String>();
+		valeurs.add(login);
+		valeurs.add(prenom);
+		valeurs.add(nom);
+		valeurs.add(mdp);
+		valeurs.add(""+encode);
 		
-		if(DatabaseServices.insert("users", colonnes, v) > 0)
+		if(DatabaseServices.insert("users", colonnes, valeurs) > 0)
 			return true;
 		return false;
 		

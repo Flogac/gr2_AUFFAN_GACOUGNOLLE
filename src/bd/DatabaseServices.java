@@ -2,12 +2,15 @@ package bd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.mysql.jdbc.Statement;
 
 public class DatabaseServices{
 	private DataSource dataSource;
@@ -31,20 +34,42 @@ public class DatabaseServices{
 		return null;
 	}
 
-	public static int insert(String table, ArrayList<String> colonnes , ArrayList<String> valeurs ) {
+	public static int insert(String table, ArrayList<String> colonnes , ArrayList<String> valeurs ) throws SQLException {
 		Connection connection = getMySQLConnection();
-		String query = "INSERT INTO " + table + " ";
+		String requete = "INSERT INTO " + table + " \n(";
+		for (String i : colonnes) requete += i + ",";
+		requete = requete.substring(0, requete.length()-1) + ") ";
+		requete+= "VALUES (";
+		for (String i : valeurs) requete+= "'" + i + "',";
+		requete = requete.substring(0, requete.length()-1) + ");";
+		//System.out.println(requete);
+		Statement etat = (Statement) connection.createStatement();
+		return etat.executeUpdate(requete);
+	}
 
-		query+= "(";	
-		for (String i : colonnes) query += i + ",";
-		query = query.substring(0, query.length()-1) + ") ";
-		query+= "VALUES (";
-		for (String i : valeurs) query+= "'" + i + "',";
-		query = query.substring(0, query.length()-1) + ");";
-		System.out.println(query);
-		Statement st = co.createStatement();
-		int r = st.executeUpdate(query);
+	public static boolean exists(String table, ArrayList<String> colonnes, ArrayList<String> valeurs) throws SQLException {
+		Connection connection = getMySQLConnection();
+		Statement etat = (Statement) connection.createStatement();
+		String requete = "SELECT * FROM" + table ;
+		for( int i = 0 ; i < min( colonnes.size() , valeurs.size() ) ; i++ )
+			requete += "WHERE"  + colonnes.get(i) + " = " + valeurs.get(i); 
+		ResultSet resultat = etat.executeQuery(requete);
+		if( resultat.next() ) return true;
+		return false;
+	}
 
-		return r;
+	private static int min(int size, int size2) {
+		if( size > size2) return size2;
+		return size;
+	}
+
+	public static void drop(String table, ArrayList<String> colonnes, ArrayList<String> valeurs) throws SQLException {
+		Connection connection = getMySQLConnection();
+		Statement etat = (Statement) connection.createStatement();
+		String requete = "DELETE FROM" + table + "WHERE";
+		for( int i = 0 ; i < min( colonnes.size() , valeurs.size() ) ; i++ ){
+			requete += colonnes.get(i) + " = " + valeurs.get(i); 
+			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += ",";
+		}
 	}
 }
