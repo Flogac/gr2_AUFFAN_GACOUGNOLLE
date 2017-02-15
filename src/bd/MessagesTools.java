@@ -19,4 +19,14 @@ public class MessagesTools{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public static boolean removeMessage(int id, String message) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static boolean belongsToUser(int id, String message) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
