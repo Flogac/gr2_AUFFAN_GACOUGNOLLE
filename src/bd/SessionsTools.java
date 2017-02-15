@@ -15,7 +15,7 @@ public class SessionsTools{
 		ArrayList<String> valeurs = new ArrayList<String>();
 		valeurs.add(login);
 		
-		return DatabaseServices.exists("users", colonnes, valeurs) ;
+		return DatabaseServices.exists("Users", colonnes, valeurs) ;
 	}
 
 	public static boolean checkPassword(String login, String mdp) throws SQLException {

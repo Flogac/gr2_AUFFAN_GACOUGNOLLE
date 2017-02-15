@@ -1,5 +1,15 @@
 package bd;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -42,7 +52,6 @@ public class DatabaseServices{
 		requete+= "VALUES (";
 		for (String i : valeurs) requete+= "'" + i + "',";
 		requete = requete.substring(0, requete.length()-1) + ");";
-		//System.out.println(requete);
 		Statement etat = (Statement) connection.createStatement();
 		return etat.executeUpdate(requete);
 	}
@@ -69,7 +78,43 @@ public class DatabaseServices{
 		String requete = "DELETE FROM" + table + "WHERE";
 		for( int i = 0 ; i < min( colonnes.size() , valeurs.size() ) ; i++ ){
 			requete += colonnes.get(i) + " = " + valeurs.get(i); 
-			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += ",";
+			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += " AND ";
 		}
+		etat.executeQuery(requete);
 	}
+
+	public static ResultSet select(String table, ArrayList<String> select, ArrayList<String> colonnes,
+			ArrayList<String> valeurs) throws SQLException {
+		Connection connection = getMySQLConnection();
+		Statement etat = (Statement) connection.createStatement();
+		String requete = "SELECT ";
+		if( select.size() == 0 ) requete +="* ";
+		for( int i = 0 ; i < select.size() ; i++ ){
+			requete += select.get(i);
+			if( i != select.size() - 1 ) requete += ",";
+		}
+		requete += "FROM " + table + " ";
+		for( int i = 0 ; i < min( colonnes.size() , valeurs.size() ) ; i++ ){
+			requete += colonnes.get(i) + " = " + valeurs.get(i); 
+			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += " AND ";
+		}
+		return etat.executeQuery(requete);
+	}
+	
+	private static DB getMongo(){
+		return new Mongo(DBStatic.mysql_host, DBStatic.mongoDB_port).getDB(DBStatic.mysql_db);
+	}
+
+	public static DBCollection getMongoCo(String table){
+		return getMongo().getCollection(table);
+	}
+	
+	public static DBCursor find(String table, BasicDBObject o){
+		return getMongoCo(table).find(o);
+	}
+
+	public static void add(String table, BasicDBObject o){
+		getMongoCo(table).insert(o);
+	}
+	
 }
