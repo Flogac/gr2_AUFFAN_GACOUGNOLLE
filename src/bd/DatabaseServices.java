@@ -1,15 +1,5 @@
 package bd;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoException;
-import com.mongodb.WriteConcern;
-
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.DBCursor;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -99,22 +89,6 @@ public class DatabaseServices{
 			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += " AND ";
 		}
 		return etat.executeQuery(requete);
-	}
-	
-	private static DB getMongo(){
-		return new Mongo(DBStatic.mysql_host, DBStatic.mongoDB_port).getDB(DBStatic.mysql_db);
-	}
-
-	public static DBCollection getMongoCo(String table){
-		return getMongo().getCollection(table);
-	}
-	
-	public static DBCursor find(String table, BasicDBObject o){
-		return getMongoCo(table).find(o);
-	}
-
-	public static void add(String table, BasicDBObject o){
-		getMongoCo(table).insert(o);
 	}
 	
 }
