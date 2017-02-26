@@ -34,16 +34,23 @@ public class DatabaseServices{
 		return null;
 	}
 
-	public static int insert(String table, ArrayList<String> colonnes , ArrayList<String> valeurs ) throws SQLException {
-		Connection connection = getMySQLConnection();
-		String requete = "INSERT INTO " + table + " \n(";
-		for (String i : colonnes) requete += i + ",";
-		requete = requete.substring(0, requete.length()-1) + ") ";
-		requete+= "VALUES (";
-		for (String i : valeurs) requete+= "'" + i + "',";
-		requete = requete.substring(0, requete.length()-1) + ");";
-		Statement etat = (Statement) connection.createStatement();
-		return etat.executeUpdate(requete);
+	//TERMINEE
+	public static int insert(String table,List<String> colonnes,List<String> valeurs){
+		int res=0;
+		try{
+			Connection connection=getMySQLConnection();
+			String requete="INSERT INTO "+table+"(";
+			for(String i:colonnes)requete+=i+",";
+			requete=requete.substring(0,requete.length()-1)+")";
+			requete+= " VALUES (";
+			for(String i:valeurs)requete+="'"+i+"',";
+			requete=requete.substring(0,requete.length()-1)+")";
+			Statement etat=(Statement)connection.createStatement();
+			res=etat.executeUpdate(requete);
+			connection.close();
+		}
+		catch(Exception e){}
+		return res;
 	}
 
 	public static boolean exists(String table, ArrayList<String> colonnes, ArrayList<String> valeurs) throws SQLException {
