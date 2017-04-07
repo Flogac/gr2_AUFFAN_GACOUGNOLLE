@@ -1,5 +1,8 @@
 //Codes d'erreur
-//0:succes
+//-1: mauvais arguments
+//0: succes
+//1000: erreur SQL
+//10002: erreur inconnue
 
 package services;
 
