@@ -19,7 +19,7 @@ public class TestSuppressionMysql{
 		valeurs.add("5678");
 		valeurs.add(new Timestamp(System.currentTimeMillis()).toString());
 		try{
-			DatabaseServices.delete(req,colonnes,valeurs);
+			DatabaseServices.drop(req,colonnes,valeurs);
 		}
 		catch(SQLException e){
 			e.printStackTrace();

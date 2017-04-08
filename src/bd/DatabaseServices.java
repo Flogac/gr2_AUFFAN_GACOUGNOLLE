@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -69,7 +70,7 @@ public class DatabaseServices{
 		return size;
 	}
 
-	public static void drop(String table, ArrayList<String> colonnes, ArrayList<String> valeurs) throws SQLException {
+	public static void drop(String table, List<String> colonnes, List<String> valeurs) throws SQLException {
 		Connection connection = getMySQLConnection();
 		Statement etat = (Statement) connection.createStatement();
 		String requete = "DELETE FROM" + table + "WHERE";
