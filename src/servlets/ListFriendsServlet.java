@@ -14,6 +14,11 @@ import services.FriendsServices;
 public class ListFriendsServlet extends HttpServlet {
 
 	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4119826009015260418L;
+
+	/**
 	 * Default constructor.
 	 */
 	 public ListFriendsServlet() {

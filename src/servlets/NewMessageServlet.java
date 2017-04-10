@@ -14,6 +14,11 @@ import services.MessagesServices;
 public class NewMessageServlet extends HttpServlet {
 
 	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1326023034810755869L;
+
+	/**
 	 * Default constructor.
 	 */
 	 public NewMessageServlet() {

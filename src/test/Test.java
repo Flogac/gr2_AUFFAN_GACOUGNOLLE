@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import servlets.CreateUserServlet;
 
-public class Test{
+/*public class Test{
 	public static void main(String[] args){
 		String key = null;
 		String login = null;
@@ -18,7 +18,7 @@ public class Test{
 		HttpServletRequest request = new RequestTest( key , login , mdp , nom , prenom , friendToAdd, friendToRemove);
 		HttpServletResponse response = new ResponseTest();
 		HttpServlet testServlet = new CreateUserServlet();
-		testServlet.doGet( request , response);
+		//testServlet.doGet( request , response);
 		System.out.print(response.toString());
 	}
-}
+}*/

@@ -14,6 +14,11 @@ import services.MessagesServices;
 public class RemoveMessageServlet extends HttpServlet {
 
 	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4976104269749104464L;
+
+	/**
 	 * Default constructor.
 	 */
 	 public RemoveMessageServlet() {

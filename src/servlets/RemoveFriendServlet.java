@@ -14,6 +14,11 @@ import services.FriendsServices;
 public class RemoveFriendServlet extends HttpServlet {
 
 	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6423792327588195206L;
+
+	/**
 	 * Default constructor.
 	 */
 	 public RemoveFriendServlet() {

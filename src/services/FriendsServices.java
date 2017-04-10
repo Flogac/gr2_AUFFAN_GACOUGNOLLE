@@ -17,7 +17,7 @@ public class FriendsServices {
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
 			boolean is_friend = SessionsTools.userExists( friendToAdd );
-				if( !is_user )
+				if( !is_friend )
 					return ErrorJSON.serviceRefused( "Unknown user" + friendToAdd , 3 );
 			boolean key_ok = SessionsTools.checkSession( login , key );
 				if( !key_ok )

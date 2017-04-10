@@ -18,7 +18,7 @@ public class DatabaseServices{
 	
 	public DatabaseServices(String jndiname) throws SQLException{
 		try{
-			dataSource=(DataSource)new InitialContext().lookup("java:comp/env/"+jndiname);
+			this.setDataSource((DataSource)new InitialContext().lookup("java:comp/env/"+jndiname));
 		}
 		catch(NamingException e){
 			throw new SQLException(jndiname+" is missing in JNDI! : "+e.getMessage());
@@ -29,10 +29,10 @@ public class DatabaseServices{
 		return (Connection) DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host + ":" + DBStatic.mysql_port + "/" + DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password);
 	}
 	public static Connection getMySQLConnection() throws SQLException{
-		if(DBStatic.mysql_pooling==false){
+		//if(DBStatic.mysql_pooling==false){
 			return(DriverManager.getConnection("jdbc:mysql://"+DBStatic.mysql_host+"/"+DBStatic.mysql_db,DBStatic.mysql_username,DBStatic.mysql_password));
-		}
-		return null;
+		//}
+		//return null;
 	}
 
 	//TERMINEE
@@ -97,6 +97,14 @@ public class DatabaseServices{
 			if( i != min( colonnes.size() , valeurs.size() ) - 1 ) requete += " AND ";
 		}
 		return etat.executeQuery(requete);
+	}
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 	
 }

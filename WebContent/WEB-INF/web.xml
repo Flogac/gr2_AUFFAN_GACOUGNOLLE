@@ -5,8 +5,72 @@
 		<servlet-name>LoginServlet</servlet-name> 
 		<servlet-class>servlets.LoginServlet</servlet-class> 
 	</servlet>
+	<servlet>
+		<servlet-name>AddFriendServlet</servlet-name>
+		<servlet-class>servlets.AddFriendServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CreateUserServlet</servlet-name>
+		<servlet-class>servlets.CreateUserServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListFriendsServlet</servlet-name>
+		<servlet-class>servlets.ListFriendsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListMessagesServlet</servlet-name>
+		<servlet-class>servlets.ListMessagesServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>servlets.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>NewMessageServlet</servlet-name>
+		<servlet-class>servlets.NewMessageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveFriendServlet</servlet-name>
+		<servlet-class>servlets.RemoveFriendServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RemoveMessageServlet</servlet-name>
+		<servlet-class>servlets.RemoveMessageServlet</servlet-class>
+	</servlet>
 	<servlet-mapping> 
 		<servlet-name>LoginServlet</servlet-name> 
 		<url-pattern>/LoginServlet</url-pattern> 
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddFriendServlet</servlet-name>
+		<url-pattern>/AddFriendServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreateUserServlet</servlet-name>
+		<url-pattern>/CreateUserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListFriendsServlet</servlet-name>
+		<url-pattern>/ListFriendsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListMessagesServlet</servlet-name>
+		<url-pattern>/ListMessagesServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewMessageServlet</servlet-name>
+		<url-pattern>/NewMessageServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveFriendServlet</servlet-name>
+		<url-pattern>/RemoveFriendServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RemoveMessageServlet</servlet-name>
+		<url-pattern>/RemoveMessageServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

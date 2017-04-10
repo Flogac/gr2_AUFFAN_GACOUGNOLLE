@@ -3,7 +3,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +19,11 @@ import services.UserServices;
 public class LoginServlet extends HttpServlet {
  
  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5477069511069024818L;
+
+/**
  * Default constructor.
  */
  public LoginServlet() {
