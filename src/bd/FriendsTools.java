@@ -35,7 +35,7 @@ public class FriendsTools{
 		ArrayList<String> valeurs = new ArrayList<String>();
 		valeurs.add(""+id);
 		valeurs.add(""+id_friend);
-		DatabaseServices.drop( "Session" , colonnes , valeurs );
+		DatabaseServices.drop( "Friends" , colonnes , valeurs );
 		return true;
 	}
 

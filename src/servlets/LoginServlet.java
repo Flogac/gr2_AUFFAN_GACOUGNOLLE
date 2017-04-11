@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
  
  	String login = request.getParameter( "login" );
  	String mdp = request.getParameter( "mdp" );
- 	JSONObject retour = UserServices.login( login , mdp );
+ 	JSONObject retour = UserServices.login(login, mdp);
  	response.setContentType( "text/plain" );
  	response.getWriter().print( retour );
  }

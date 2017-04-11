@@ -32,7 +32,7 @@ public class ListFriendsServlet extends HttpServlet {
 	 
 	 	String login = request.getParameter( "login" );
 	 	String key = request.getParameter( "key" );
-	 	JSONObject retour = FriendsServices.listFriends( login , key );
+	 	JSONObject retour = FriendsServices.listFriends(login, key);
 	 	response.setContentType( "text/plain" );
 	 	response.getWriter().print( retour );
 	 }

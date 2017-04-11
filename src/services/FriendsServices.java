@@ -16,14 +16,17 @@ public class FriendsServices {
 			boolean is_user = SessionsTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
-			boolean is_friend = SessionsTools.userExists( friendToAdd );
-				if( !is_friend )
+			boolean is_user2 = SessionsTools.userExists( friendToAdd );
+				if( !is_user2 )
 					return ErrorJSON.serviceRefused( "Unknown user" + friendToAdd , 3 );
 			boolean key_ok = SessionsTools.checkSession( login , key );
 				if( !key_ok )
 					return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
 			int id = SessionsTools.getIdUser( login );
 			int id_friend = SessionsTools.getIdUser( friendToAdd );
+			boolean is_friend = FriendsTools.isFriend(id, id_friend);
+			if( !is_friend )
+				return ErrorJSON.serviceRefused( "Friend already befriended" + friendToAdd , 12 );
 			boolean added_friend = FriendsTools.addFriend( id , id_friend );
 			if( !added_friend ){
 				return ErrorJSON.serviceRefused( "Friend is ignoring the user" + login + " " + friendToAdd, 4 );

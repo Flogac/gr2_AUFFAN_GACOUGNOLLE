@@ -32,7 +32,7 @@ public class ListMessagesServlet extends HttpServlet {
 	 
 	 	String login = request.getParameter( "login" );
 	 	String key = request.getParameter( "key" );
-	 	JSONObject retour = MessagesServices.listMessages( login , key );
+	 	JSONObject retour = MessagesServices.listMessages(login, key);
 	 	response.setContentType( "text/plain" );
 	 	response.getWriter().print( retour );
 	 }

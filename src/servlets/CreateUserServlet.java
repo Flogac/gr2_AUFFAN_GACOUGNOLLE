@@ -34,7 +34,7 @@ public class CreateUserServlet extends HttpServlet {
 	 	String mdp = request.getParameter( "mdp" );
 	 	String nom = request.getParameter("nom");
 	 	String prenom = request.getParameter("prenom");
-	 	JSONObject retour = UserServices.createUser( login , mdp , prenom , nom );
+	 	JSONObject retour = UserServices.createUser(login, mdp, prenom, prenom);
 	 	response.setContentType( "text/plain" );
 	 	response.getWriter().print( retour );
 	 }
