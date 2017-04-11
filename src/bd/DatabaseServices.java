@@ -29,10 +29,17 @@ public class DatabaseServices{
 		return (Connection) DriverManager.getConnection("jdbc:mysql://" + DBStatic.mysql_host + ":" + DBStatic.mysql_port + "/" + DBStatic.mysql_db, DBStatic.mysql_username, DBStatic.mysql_password);
 	}
 	public static Connection getMySQLConnection() throws SQLException{
-		//if(DBStatic.mysql_pooling==false){
-			return(DriverManager.getConnection("jdbc:mysql://"+DBStatic.mysql_host+"/"+DBStatic.mysql_db,DBStatic.mysql_username,DBStatic.mysql_password));
-		//}
-		//return null;
+		System.out.println("entree de getMySQLConnection de bd.DatabaseServices");
+		try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			System.out.println("sortie probleme de getMySQLConnection de bd.DatabaseServices");
+			return null;
+		}
+		System.out.println("sortie ok de getMySQLConnection de bd.DatabaseServices");
+		return(DriverManager.getConnection("jdbc:mysql://"+DBStatic.mysql_host+":"+DBStatic.mysql_port+"/"+DBStatic.mysql_db,DBStatic.mysql_username,DBStatic.mysql_password));
 	}
 
 	//TERMINEE
