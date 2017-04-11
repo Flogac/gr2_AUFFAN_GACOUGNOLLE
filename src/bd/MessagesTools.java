@@ -2,10 +2,11 @@
 package bd;
 
 import java.util.Collection;
+import java.util.List;
 
 public class MessagesTools{
 
-	public static Collection<?> listMessages(int id) {
+	public static List<String> listMessages(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
