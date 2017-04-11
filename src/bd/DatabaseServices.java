@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.mysql.jdbc.Statement;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 public class DatabaseServices{
 	private DataSource dataSource;
@@ -19,9 +20,9 @@ public class DatabaseServices{
 	public DatabaseServices(String jndiname) throws SQLException{
 		try{
 			this.setDataSource((DataSource)new InitialContext().lookup("java:comp/env/"+jndiname));
-		}
+			}
 		catch(NamingException e){
-			throw new SQLException(jndiname+" is missing in JNDI! : "+e.getMessage());
+			throw new SQLException(jndiname+" is missing in JNDI! : " + e.getMessage());
 		}
 	}
 	

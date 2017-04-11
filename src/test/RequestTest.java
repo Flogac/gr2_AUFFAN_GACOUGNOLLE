@@ -1,5 +1,5 @@
 package test;
-
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -14,7 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class RequestTest implements HttpServletRequest {
+/*public class RequestTest implements HttpServletRequest {
 	private String key = null;
 	private String login = null;
 	private String mdp = null;
@@ -35,37 +35,31 @@ public class RequestTest implements HttpServletRequest {
 		this.prenom = prenom2;
 	}
 
-	@Override
 	public Object getAttribute(String arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Enumeration getAttributeNames() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String getCharacterEncoding() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public int getContentLength() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public String getContentType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ServletInputStream getInputStream() throws IOException {
 		// TODO Auto-generated method stub
 		return null;
@@ -366,3 +360,4 @@ public class RequestTest implements HttpServletRequest {
 	}
 
 }
+*/
