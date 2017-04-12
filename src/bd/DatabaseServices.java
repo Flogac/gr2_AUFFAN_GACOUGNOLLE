@@ -117,4 +117,19 @@ public class DatabaseServices{
 		this.dataSource = dataSource;
 	}
 	
+	private static DB getMongo(){
+		return new Mongo(DBStatic.mysql_host, DBStatic.mongoDB_port).getDB(DBStatic.mysql_db);
+	}
+
+	public static DBCollection getMongoCo(String table){
+		return getMongo().getCollection(table);
+	}
+	
+	public static DBCursor find(String table, BasicDBObject o){
+		return getMongoCo(table).find(o);
+	}
+
+	public static void add(String table, BasicDBObject o){
+		getMongoCo(table).insert(o);
+	}
 }
