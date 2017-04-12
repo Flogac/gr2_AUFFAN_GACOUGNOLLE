@@ -10,11 +10,12 @@ public class SessionsTools{
 		System.err.println("erreur numero "+num+" "+message);
 	}
 	public static boolean userExists(String login) throws SQLException {
-		ArrayList<String> colonnes = new ArrayList<String>();
+		System.out.println("entree dans userExists de bd.SessionsTools");
+		List<String> colonnes = new ArrayList<String>();
 		colonnes.add("login");
-		ArrayList<String> valeurs = new ArrayList<String>();
+		List<String> valeurs = new ArrayList<String>();
 		valeurs.add(login);
-		
+		System.out.println("sortie de userExists de bd.SessionsTools");
 		return DatabaseServices.exists("Users", colonnes, valeurs) ;
 	}
 
