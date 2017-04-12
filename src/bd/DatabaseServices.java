@@ -62,14 +62,16 @@ public class DatabaseServices{
 		return res;
 	}
 
-	public static boolean exists(String table, ArrayList<String> colonnes, ArrayList<String> valeurs) throws SQLException {
+	public static boolean exists(String table,List<String> colonnes,List<String> valeurs) throws SQLException{
+		System.out.println("entree de exists de bd.DatabaseServices");
 		Connection connection = getMySQLConnection();
-		Statement etat = (Statement) connection.createStatement();
-		String requete = "SELECT * FROM" + table ;
-		for( int i = 0 ; i < min( colonnes.size() , valeurs.size() ) ; i++ )
-			requete += "WHERE"  + colonnes.get(i) + " = " + valeurs.get(i); 
+		Statement etat =connection.createStatement();
+		String requete = "SELECT * FROM " + table ;
+		for( int i = 0 ; i < Math.min( colonnes.size() , valeurs.size() ) ; i++ )
+			requete+=" WHERE "+colonnes.get(i)+" = "+valeurs.get(i);
 		ResultSet resultat = etat.executeQuery(requete);
-		if( resultat.next() ) return true;
+		System.out.println("sortie de exists de bd.DatabaseServices");
+		if(resultat.next()) return true;
 		return false;
 	}
 
