@@ -65,7 +65,7 @@ public class DatabaseServices{
 	public static boolean exists(String table,List<String> colonnes,List<String> valeurs) throws SQLException{
 		System.out.println("entree de exists de bd.DatabaseServices");
 		Connection connection = getMySQLConnection();
-		Statement etat =connection.createStatement();
+		java.sql.Statement etat =connection.createStatement();
 		String requete = "SELECT * FROM " + table ;
 		for( int i = 0 ; i < Math.min( colonnes.size() , valeurs.size() ) ; i++ )
 			requete+=" WHERE "+colonnes.get(i)+" = "+valeurs.get(i);
