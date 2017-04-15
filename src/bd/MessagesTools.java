@@ -1,7 +1,6 @@
 //changer toutes les occurrences de message par comment ou commentaire
 package bd;
 
-import java.util.Collection;
 import java.util.List;
 
 public class MessagesTools{

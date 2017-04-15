@@ -1,7 +1,9 @@
 package bd;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class SessionsTools{
@@ -31,39 +33,50 @@ public class SessionsTools{
 	}
 
 	public static int getIdUser(String login) throws SQLException {
-		return Integer.parseInt(login);
+		ArrayList<String> colonnes = new ArrayList<String>();
+		colonnes.add("login");
+		ArrayList<String> valeurs = new ArrayList<String>();
+		valeurs.add(login);
+		ArrayList<String> select = new ArrayList<String>();
+		select.add("id");
+		
+		ResultSet res = DatabaseServices.select("Users", select, colonnes, valeurs );
+		res.next();
+		return res.getInt("id");
 	}
 
 	public static String insertSession(int id, boolean b) throws SQLException {
 		Random rand = new Random();
 		ArrayList<String> colonnes = new ArrayList<String>();
 		colonnes.add("id");
-		colonnes.add("key");
+		colonnes.add("cle");
+		colonnes.add("root");
 		String key = "" + id +rand.nextInt() ;
 		ArrayList<String> valeurs = new ArrayList<String>();
 		valeurs.add(""+id);
 		valeurs.add( key );
-		DatabaseServices.insert( "Session" , colonnes , valeurs );
+		valeurs.add("0");
+		DatabaseServices.insert( "Sessions" , colonnes , valeurs );
 		return key;
 	}
-	public static boolean checkSession(String login, String key) throws SQLException {
+	public static boolean checkSession(int id, String key) throws SQLException {
 		ArrayList<String> colonnes = new ArrayList<String>();
-		colonnes.add("login");
-		colonnes.add("key");
+		colonnes.add("id");
+		colonnes.add("cle");
 		ArrayList<String> valeurs = new ArrayList<String>();
-		valeurs.add(login);
+		valeurs.add("" + id);
 		valeurs.add( key );
 		
-		return DatabaseServices.exists("Session", colonnes, valeurs) ;
+		return DatabaseServices.exists("Sessions", colonnes, valeurs) ;
 	}
 	public static void supprSession(int id, String key) throws SQLException {
 		ArrayList<String> colonnes = new ArrayList<String>();
 		colonnes.add("id");
-		colonnes.add("key");
+		colonnes.add("cle");
 		ArrayList<String> valeurs = new ArrayList<String>();
 		valeurs.add(""+id);
 		valeurs.add( key );
-		DatabaseServices.drop( "Session" , colonnes , valeurs );
+		DatabaseServices.drop( "Sessions" , colonnes , valeurs );
 		
 	} 
 }

@@ -1,13 +1,13 @@
 package test;
 
-/*import java.io.IOException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-/*
+
 public class ResponseTest implements HttpServletResponse {
 
 	@Override
@@ -202,4 +202,4 @@ public class ResponseTest implements HttpServletResponse {
 
 	}
 
-}*/
+}

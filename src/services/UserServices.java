@@ -34,14 +34,15 @@ public class UserServices {
 	public static JSONObject logout(String login, String key) {
 		if( login == null || key == null )
 			return ErrorJSON.serviceRefused( "Wrong arguments" , -1 );
-		try{
+		try
+		{
 			boolean is_user = SessionsTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
-			boolean key_ok = SessionsTools.checkSession( login , key );
-			if( !key_ok )
-				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
 			int id = SessionsTools.getIdUser( login );
+			boolean key_ok = SessionsTools.checkSession( id , key );
+			if( !key_ok )
+				return ErrorJSON.serviceRefused( "Wrong key" + login , 2 );
 			SessionsTools.supprSession( id , key );
 			JSONObject retour = new JSONObject();
 			retour.put( "login" , login );

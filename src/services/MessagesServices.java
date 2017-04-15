@@ -16,10 +16,10 @@ public class MessagesServices {
 			boolean is_user = SessionsTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
-			boolean key_ok = SessionsTools.checkSession( login , key );
+			int id = SessionsTools.getIdUser( login );
+			boolean key_ok = SessionsTools.checkSession( id , key );
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
-			int id = SessionsTools.getIdUser( login );
 			JSONObject retour = new JSONObject();
 			retour.put( "login" , MessagesTools.listMessages( id ) );
 			return retour;
@@ -37,10 +37,10 @@ public class MessagesServices {
 			boolean is_user = SessionsTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
-			boolean key_ok = SessionsTools.checkSession( login , key );
+			int id = SessionsTools.getIdUser( login );
+			boolean key_ok = SessionsTools.checkSession( id , key );
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
-			int id = SessionsTools.getIdUser( login );
 			MessagesTools.addMessage( id , message);
 			JSONObject retour = new JSONObject();
 			retour.put( "login" , message );
@@ -59,10 +59,10 @@ public class MessagesServices {
 			boolean is_user = SessionsTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
-			boolean key_ok = SessionsTools.checkSession( login , key );
+			int id = SessionsTools.getIdUser( login );
+			boolean key_ok = SessionsTools.checkSession( id , key );
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
-			int id = SessionsTools.getIdUser( login );
 			boolean is_owned = MessagesTools.belongsToUser( id , message );
 			if( !is_owned )
 				return ErrorJSON.serviceRefused( "Message not owned or do not exists" + message , 13 );

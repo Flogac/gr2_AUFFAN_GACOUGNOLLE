@@ -48,7 +48,10 @@ public class FriendsTools{
 		select.add( "vers" );
 		ResultSet resultat = DatabaseServices.select( "Friends" , select , colonnes , valeurs );
 		String arr = "";
+		if( resultat.next() )
+			arr = resultat.getString("vers");
 		while (resultat.next()) {
+		    arr+= " , ";
 		    arr += resultat.getString("vers");
 		}
 		return arr;

@@ -1,5 +1,5 @@
 package test;
-/*
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -14,7 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/*public class RequestTest implements HttpServletRequest {
+public class RequestTest implements HttpServletRequest {
 	private String key = null;
 	private String login = null;
 	private String mdp = null;
@@ -360,4 +360,3 @@ import javax.servlet.http.HttpSession;
 	}
 
 }
-*/

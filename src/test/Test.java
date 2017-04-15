@@ -1,12 +1,12 @@
 package test;
-
+/*
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlets.CreateUserServlet;
 
-/*public class Test{
+public class Test{
 	public static void main(String[] args){
 		String key = null;
 		String login = null;
