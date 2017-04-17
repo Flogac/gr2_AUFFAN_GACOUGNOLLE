@@ -21,7 +21,7 @@ public class MessagesServices {
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
 			JSONObject retour = new JSONObject();
-			retour.put( "login" , MessagesTools.listMessages( id , -1) );
+			retour.put( "login" , MessagesTools.listMessages( id , -1 , -1) );
 			return retour;
 		} catch ( SQLException e ){
 			return ErrorJSON.serviceRefused( "SQLQueryException" , 1000 );

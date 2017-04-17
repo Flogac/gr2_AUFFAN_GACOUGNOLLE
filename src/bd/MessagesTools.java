@@ -13,8 +13,32 @@ import com.mongodb.MongoException;
 
 public class MessagesTools{
 
-	public static JSONArray listMessages(int id , int nombre ) throws UnknownHostException {
+	public static JSONArray listMessages(int id , int nombre , int nombre_commentaires) throws UnknownHostException {
 		DBCursor curseur = getMessage(nombre, null, id, null, null, null, null );
+		JSONObject jasonTemp = new JSONObject();
+		JSONArray tableau = new JSONArray();
+		int i = 0;
+		
+		while(curseur.hasNext() && i < nombre || nombre == -1 )
+		{
+			BasicDBObject recuperation = (BasicDBObject) curseur.next();
+			jasonTemp.put("id", recuperation.getObjectId("_id").toString());
+			jasonTemp.put("auteur", recuperation.getString("auteur"));
+			jasonTemp.put("message", recuperation.getString("message"));
+			jasonTemp.put("titre", recuperation.getString("title"));
+			jasonTemp.put("date", recuperation.getString("date"));
+			jasonTemp.put("source", recuperation.getString("source"));
+				
+			tableau.put(jasonTemp);
+			tableau.put(listCommentaires(recuperation , nombre_commentaires));
+			
+		}
+		
+		curseur.close();
+		return tableau;
+	}
+	private static JSONArray listCommentaires(BasicDBObject source , int nombre) throws UnknownHostException {
+		DBCursor curseur = getMessage(-1, null, -1, null, null, source.getObjectId("_id").toString(), null );
 		JSONObject jasonTemp = new JSONObject();
 		JSONArray tableau = new JSONArray();
 		int i = 0;
@@ -85,8 +109,9 @@ public class MessagesTools{
 	private static DBCursor getMessage( final int nombre , final String date , final int id, final String message , final String titre , final String source , final String id_message) throws UnknownHostException{
 		BasicDBObject requete = new BasicDBObject();
 		
-		if(source !=null)
-			requete.append( "source", source);		// Message parent, 0 si aucun, n pour commentaire du message n.
+		if(source !=null){
+			requete.append( "source", source);
+		}else requete.append( "source" , "");
 		
 		if( date != null )
 			requete.append( "date", date);
