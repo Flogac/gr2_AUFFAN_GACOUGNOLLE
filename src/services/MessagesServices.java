@@ -21,7 +21,7 @@ public class MessagesServices {
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
 			JSONObject retour = new JSONObject();
-			retour.put( "login" , MessagesTools.listMessages( id ) );
+			retour.put( "login" , MessagesTools.listMessages( id , -1) );
 			return retour;
 		} catch ( SQLException e ){
 			return ErrorJSON.serviceRefused( "SQLQueryException" , 1000 );
@@ -30,7 +30,7 @@ public class MessagesServices {
 		}
 	}
 
-	public static JSONObject newMessage(String login, String key, String message) {
+	public static JSONObject newMessage(String login, String key, String message , String titre ) {
 		if( login == null || key == null || message == null )
 			return ErrorJSON.serviceRefused( "Wrong arguments" , -1 );
 		try{
@@ -41,7 +41,7 @@ public class MessagesServices {
 			boolean key_ok = SessionsTools.checkSession( id , key );
 			if( !key_ok )
 				return ErrorJSON.serviceRefused( "Wrong key" + login , 1 );
-			MessagesTools.addMessage( id , message);
+			MessagesTools.addMessage( id , message, titre, false, null);
 			JSONObject retour = new JSONObject();
 			retour.put( "login" , message );
 			return retour;

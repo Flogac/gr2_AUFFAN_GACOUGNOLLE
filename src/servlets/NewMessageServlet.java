@@ -33,7 +33,8 @@ public class NewMessageServlet extends HttpServlet {
 	 	String login = request.getParameter( "login" );
 	 	String key = request.getParameter( "key" );
 	 	String message = request.getParameter("message" );
-	 	JSONObject retour = MessagesServices.newMessage( login , key , message );
+	 	String titre = request.getParameter( "titre" );
+	 	JSONObject retour = MessagesServices.newMessage( login , key , message, titre );
 	 	response.setContentType( "text/plain" );
 	 	response.getWriter().print( retour );
 	 }
