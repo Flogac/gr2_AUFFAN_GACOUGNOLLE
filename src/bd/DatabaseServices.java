@@ -128,12 +128,12 @@ public class DatabaseServices{
 		this.dataSource = dataSource;
 	}
 	
-	private static DB getMongo() throws UnknownHostException{
+	private static DB mongoCo() throws UnknownHostException{
 		return new Mongo(DBStatic.mysql_host, DBStatic.mongoDB_port).getDB(DBStatic.mysql_db);
 	}
 
 	public static DBCollection getMongoCo(String table) throws UnknownHostException{
-		return getMongo().getCollection(table);
+		return mongoCo().getCollection(table);
 	}
 	
 	public static DBCursor find(String table, BasicDBObject o) throws UnknownHostException{
@@ -142,5 +142,9 @@ public class DatabaseServices{
 
 	public static void add(String table, BasicDBObject o) throws UnknownHostException{
 		getMongoCo(table).insert(o);
+	}
+	
+	public static void dropMongo( String table, BasicDBObject o ) throws UnknownHostException{
+		getMongoCo( table ).findAndRemove(o);
 	}
 }

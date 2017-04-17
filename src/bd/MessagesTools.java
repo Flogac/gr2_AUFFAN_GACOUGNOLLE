@@ -65,8 +65,15 @@ public class MessagesTools{
 	
 
 	public static boolean removeMessage(int id, String id_message) {
-		// TODO Auto-generated method stub
-		return false;
+		BasicDBObject requete = new BasicDBObject();
+		requete.append("_id", id_message);
+		requete.append("auteur", id);
+		try {
+			DatabaseServices.dropMongo("messages", requete );
+		} catch (UnknownHostException e) {
+			return false;
+		}
+		return true;
 	}
 
 	public static boolean belongsToUser(int id, String id_message) throws UnknownHostException {
