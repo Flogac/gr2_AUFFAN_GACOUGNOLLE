@@ -31,17 +31,19 @@ public class SessionsTools{
 		
 		return DatabaseServices.exists("Users", colonnes, valeurs) ;
 	}
-
-	public static int getIdUser(String login) throws SQLException {
-		ArrayList<String> colonnes = new ArrayList<String>();
+	
+	public static int getIdUser(String login) throws SQLException,IdNotFoundException{
+		System.out.println("entree de bd.SessionsTools.getIdUser");
+		List<String> colonnes=new ArrayList<String>();
 		colonnes.add("login");
-		ArrayList<String> valeurs = new ArrayList<String>();
+		List<String> valeurs=new ArrayList<String>();
 		valeurs.add(login);
-		ArrayList<String> select = new ArrayList<String>();
+		List<String> select=new ArrayList<String>();
 		select.add("id");
-		
-		ResultSet res = DatabaseServices.select("Users", select, colonnes, valeurs );
-		res.next();
+		ResultSet res=DatabaseServices.select("Users",select,colonnes,valeurs);
+		if(res==null||res.next()==false)
+			throw new IdNotFoundException();
+		System.out.println("sortie de bd.SessionsTools.getIdUser");
 		return res.getInt("id");
 	}
 
