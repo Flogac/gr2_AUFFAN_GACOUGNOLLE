@@ -41,7 +41,7 @@ public class SessionsTools{
 		List<String> select=new ArrayList<String>();
 		select.add("id");
 		ResultSet res=DatabaseServices.select("Users",select,colonnes,valeurs);
-		if(res==null||res.next()==false)
+		if(res.next()==false)
 			throw new IdNotFoundException();
 		System.out.println("sortie de bd.SessionsTools.getIdUser");
 		return res.getInt("id");
