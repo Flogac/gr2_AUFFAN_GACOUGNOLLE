@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 public class SessionsTools{
 	
@@ -61,15 +61,16 @@ public class SessionsTools{
 		DatabaseServices.insert( "Sessions" , colonnes , valeurs );
 		return key;
 	}
-	public static boolean checkSession(int id, String key) throws SQLException {
-		ArrayList<String> colonnes = new ArrayList<String>();
+	public static boolean checkSession(String login,String key) throws SQLException,IdNotFoundException{
+		List<String> colonnes=new ArrayList<String>();
+		List<String> valeurs=new ArrayList<String>();
 		colonnes.add("id");
+		valeurs.add(""+getIdUser(login));
+		boolean idAlreadyPresent=DatabaseServices.exists("Sessions",colonnes,valeurs);
 		colonnes.add("cle");
-		ArrayList<String> valeurs = new ArrayList<String>();
-		valeurs.add("" + id);
-		valeurs.add( key );
-		
-		return DatabaseServices.exists("Sessions", colonnes, valeurs) ;
+		valeurs.add(key);
+		boolean keyAlreadyPresent=DatabaseServices.exists("Sessions",colonnes,valeurs);
+		return idAlreadyPresent||keyAlreadyPresent;
 	}
 	public static void supprSession(int id, String key) throws SQLException {
 		ArrayList<String> colonnes = new ArrayList<String>();
