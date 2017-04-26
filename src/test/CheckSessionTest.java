@@ -1,13 +1,19 @@
 //ce fichier sert a tester bd.SessionsTools.checkSession: TERMINE
 package test;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import bd.SessionsTools;
 
 public class CheckSessionTest{
-	public static void main(String[] args){
+	@Test
+	public void test(){
 		try{
-			System.out.println(SessionsTools.checkSession("Vatar","ae9ae5aad14f496692840d3abf76fba6")+"\n");
-			System.out.println(SessionsTools.checkSession("1234","ae9ae5aad14f496692840d3abf76fba6"));
+			SessionsTools.supprSession(26);
+			SessionsTools.insertSession(26,false);
+			assertEquals(SessionsTools.checkSession(26),true);
 		}
 		catch(Exception e){}
 	}
