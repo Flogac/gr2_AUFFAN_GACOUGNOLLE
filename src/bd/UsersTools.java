@@ -23,9 +23,18 @@ public class UsersTools{
 		return false;
 		
 	}
-	/*public static boolean userExists(String login){
-		Connection conn=Database.getMySQLConnection();
-		String query="select id from Users where login="+login;
-		Statement st=conn.createStatement();
-	}*/
+	public static void supprUser(String login)throws SQLException,InstantiationException,IllegalAccessException, ClassNotFoundException{
+		List<String> colonnes=new ArrayList<String>();
+		List<String> valeurs=new ArrayList<String>();
+		colonnes.add("id");
+		valeurs.add(""+SessionsTools.getIdUser(login));
+		DatabaseServices.delete("Users",colonnes,valeurs);
+	}
+	public static boolean userExists(String login)throws SQLException,InstantiationException,IllegalAccessException,ClassNotFoundException{
+		List<String> colonnes = new ArrayList<String>();
+		colonnes.add("login");
+		List<String> valeurs = new ArrayList<String>();
+		valeurs.add(login);
+		return DatabaseServices.exists("Users",colonnes,valeurs);
+	}
 }
