@@ -31,7 +31,7 @@ public class SessionsTools{
 		List<String> select=new ArrayList<String>();
 		select.add("id");
 		ResultSet res=DatabaseServices.select("Users",select,colonnes,valeurs);
-		System.out.println("sortie de bd.SessionsTools.getIdUser");
+		res.next();
 		return res.getInt("id");
 	}
 	public static String insertSession(int id,boolean b)throws SQLException,InstantiationException,IllegalAccessException,ClassNotFoundException, SessionDejaExistanteException{
