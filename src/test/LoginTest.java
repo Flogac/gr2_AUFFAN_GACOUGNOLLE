@@ -14,7 +14,7 @@ public class LoginTest{
 	@Test
 	public void test(){
 		try{
-			UserServices.logout("test2",SessionsTools.getKey("test2"));
+			UserServices.logout("test2");
 		} 
 		catch(Exception e){
 			e.printStackTrace();
