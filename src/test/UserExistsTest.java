@@ -2,7 +2,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +25,10 @@ public class UserExistsTest{
 		catch(Exception e){}
 		try{
 			boolean res=UsersTools.userExists("1234");
-			assertTrue(true);
 			assertEquals(res,true);
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			fail();
+		}
 	}
 }
