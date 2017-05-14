@@ -34,8 +34,7 @@ public class LogoutServlet extends HttpServlet {
 	 HttpServletResponse response) throws ServletException, IOException {
 	 
 	 	String login = request.getParameter( "login" );
-	 	String key = request.getParameter( "key" );
-	 	JSONObject retour = UserServices.logout(login, key);
+	 	JSONObject retour = UserServices.logout(login);
 	 	response.setContentType( "text/plain" );
 	 	response.getWriter().print( retour );
 	 }
