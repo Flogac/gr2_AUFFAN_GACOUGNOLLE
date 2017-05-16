@@ -83,12 +83,6 @@ public class DatabaseServices{
 		if(resultat.next()) return true;
 		return false;
 	}
-
-	private static int min(int size, int size2) {
-		if( size > size2) return size2;
-		return size;
-	}
-
 	public static void drop(String table, List<String> colonnes, List<String> valeurs) throws SQLException {
 		Connection connection = getMySQLConnection();
 		Statement etat = (Statement) connection.createStatement();
