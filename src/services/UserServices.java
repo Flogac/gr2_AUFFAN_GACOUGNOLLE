@@ -9,19 +9,21 @@ import java.sql.SQLException;
 
 public class UserServices {
 	
-	public static JSONObject login( String login , String mdp ){
+	public static JSONObject loginService( String login , String mdp ){
 		if( login == null || mdp == null )
 			return ErrorJSON.serviceRefused( "Wrong arguments" , -1 );
 		try{
-			boolean is_user = SessionsTools.userExists( login );
+			boolean is_user = UsersTools.userExists( login );
 			if( !is_user )
 				return ErrorJSON.serviceRefused( "Unknown user" + login , 1 );
 			boolean password_ok = SessionsTools.checkPassword( login , mdp );
 			if( !password_ok )
-				return ErrorJSON.serviceRefused( "Wrong password" + login , 1 );
-			int id = SessionsTools.getIdUser( login );
+				return ErrorJSON.serviceRefused( "Wrong password", 1 );
 			JSONObject retour = new JSONObject();
+			int id = SessionsTools.getIdUser( login );
 			String key = SessionsTools.insertSession( id , false );
+			retour.put("id",id);
+			retour.put("login",login);
 			retour.put( "key" , key );
 			return retour;
 		} catch ( SQLException e ){
